@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "gen-types": "npx pocketbase-typegen --db ./pb_data/data.db --out src/types/pocketbase-types.ts"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.0.0",
@@ -23,6 +24,6 @@
     "vite": "^4.0.0"
   },
   "dependencies": {
-    "pocketbase": "^0.9.1"
+    "pocketbase": "^0.10.0"
   }
 }
