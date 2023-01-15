@@ -1,5 +1,6 @@
 <script lang="ts">
   import { errorMessage, pocketbase } from "./lib/pocketbase";
+  import { push } from "svelte-spa-router";
 
   let email: string;
   let password: string;
@@ -31,6 +32,8 @@
     } else {
         try {
             await pocketbase.collection("users").authWithPassword(email, password);
+            message = "Logged in";
+            push('#/user');
         } catch (error) {
             message = errorMessage(error);
         }
