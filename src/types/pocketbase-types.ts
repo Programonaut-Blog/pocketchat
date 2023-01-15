@@ -4,7 +4,6 @@
 
 export enum Collections {
 	Chats = "chats",
-	ChatsUsers = "chats_users",
 	Messages = "messages",
 	Users = "users",
 }
@@ -33,17 +32,13 @@ export type AuthSystemFields = {
 // Record types for each collection
 
 export type ChatsRecord = {
-	chat_name?: string
-}
-
-export type ChatsUsersRecord = {
-	chat_id?: RecordIdString
-	user_id?: RecordIdString
+	users?: RecordIdString
 }
 
 export type MessagesRecord = {
 	chat_id?: RecordIdString
-	message?: string
+	author_id?: RecordIdString
+	content?: string
 }
 
 export type UsersRecord = {
@@ -53,13 +48,11 @@ export type UsersRecord = {
 
 // Response types include system fields and match responses from the PocketBase API
 export type ChatsResponse = ChatsRecord & BaseSystemFields
-export type ChatsUsersResponse = ChatsUsersRecord & BaseSystemFields
 export type MessagesResponse = MessagesRecord & BaseSystemFields
 export type UsersResponse = UsersRecord & AuthSystemFields
 
 export type CollectionRecords = {
 	chats: ChatsRecord
-	chats_users: ChatsUsersRecord
 	messages: MessagesRecord
 	users: UsersRecord
 }
