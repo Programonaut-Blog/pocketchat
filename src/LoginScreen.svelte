@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { pocketbase } from "./lib/pocketbase";
+  import { errorMessage, pocketbase } from "./lib/pocketbase";
 
   let email: string;
   let password: string;
@@ -22,18 +22,17 @@
           await pocketbase.collection("users").requestVerification(email);
           message = "Check your email for the login link";
         } catch (error) {
-          console.error(error);
+          message = errorMessage(error);
         }
       } catch (error) {
-        message = "Error creating user";
+        message = errorMessage(error);
       }
       register = false;
     } else {
         try {
             await pocketbase.collection("users").authWithPassword(email, password);
         } catch (error) {
-            console.error(error);
-            message = "Invalid credentials";
+            message = errorMessage(error);
         }
     }
     loading = false;

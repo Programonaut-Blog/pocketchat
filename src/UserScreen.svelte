@@ -1,8 +1,12 @@
 <script lang="ts">
-  import { currentUser, pocketbase } from "./lib/pocketbase";
+  import { currentUser, errorMessage, pocketbase } from "./lib/pocketbase";
 
-  async function handleSignOut() {
-    pocketbase.authStore.clear();
+  function handleSignOut() {
+    try {
+      pocketbase.authStore.clear();
+    } catch (error) {
+      errorMessage(error);
+    }
   }
 </script>
 
